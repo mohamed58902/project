@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>المحاضرات</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cairo&display=swap');
+        *{
+            padding: 0;
+            margin: 0;
+            font-family: "Cairo", sans-serif;
+            -webkit-tap-highlight-color: transparent;
+            text-decoration: none;
+        }
+        body{
+            background-image: linear-gradient( to right,  rgba(45,116,213,1) 11.2%, rgba(121,137,212,1) 91.2% );
+            height: auto;
+            margin: 0;
+            padding: 0;
+        }
+        .navbar{
+            display: flex;
+            justify-content: space-between;
+            padding: 0;
+            margin: 0;
+            padding-top: 3vh;
+            height: 10vh;
+        }
+        
+        .navbar-right{
+            display: flex;
+            margin-bottom: 30vh;
+            padding-right: 2vh;
+        }
+        .navbar-right h1{
+            color: #eee;
+            font-size: 4vh;
+        }
+        .navbar-right img{
+            width: 7vh;
+            height: 7vh;
+            padding-right: 2vh;
+            padding-top: 1vh;
+        }
+        .navbar-center{
+            display: inline-flex;
+            padding-top: 2.5vh;
+            margin-left: 30vh;
+            grid-column-gap: 5vh;
+        }
+        .navbar-center a h3{
+            color: #eeeeeedb;
+        }
+        .navbar-center a :hover{
+            color: white;
+        }
+        .header{
+            text-align: center;
+        }
+        .content a button img{
+            width: 20vh;
+            height: 20vh;
+            padding: 2vh;
+        }
+        .content a button{
+            margin-right: 4vh;
+            border-radius: 2vh;
+            border: solid;
+            border-color: black;
+            background-color: #eeeeee00;
+            cursor: pointer;
+            border-width: 4px;
+        }
+        @media(min-width:600px) and (max-width:900px){
+            .navbar{
+                display: block;
+            }
+            .navbar-right{
+            display: flex;
+            justify-content: center;
+            padding: 0;
+            margin: 0;
+        }
+        .navbar-center{
+            display: flex;
+            grid-column-gap: 2vh;
+            margin: 0;
+            padding: 0;
+            justify-content: center;
+        }
+        .navbar-center h3{
+            color: #eee;
+            font-size: 2vh;
+            padding-top: 1vh;
+        }
+        .header h1{
+            padding: 0;
+            text-align: center;
+            padding-top: 1.5vh;
+            padding-bottom: 1vh;
+        }
+        .content a button img{
+            width: 15vh;
+            height: 15vh;
+            padding: 2vh;
+        }
+        .content a button{
+            margin-right: 4vh;
+            border-radius: 2vh;
+            border: solid;
+            border-color: black;
+            background-color: #eeeeee00;
+            cursor: pointer;
+            margin: auto;
+            margin-bottom: 2vh;
+            border-width: 4px;
+        }
+        .content {
+            display: grid;
+            grid-template-columns: auto auto auto;
+            margin: 0;
+            padding: 0;
+        }
+        .content a{
+            text-align: center;
+            padding: 0;
+            margin: 0;
+        }
+        .content a button h2{
+            font-size: 2vh;
+        }
+        }
+        @media(min-width:1023px) and (max-width:1024px){
+            .navbar{
+                display: block;
+            }
+            .navbar-right{
+            display: flex;
+            justify-content: center;
+            padding: 0;
+            margin: 0;
+        }
+        .navbar-center{
+            display: flex;
+            grid-column-gap: 2vh;
+            margin: 0;
+            padding: 0;
+            justify-content: center;
+            margin-left: 5vh;
+        }
+        .navbar-center h3{
+            color: #eee;
+            font-size: 2.5vh;
+        }
+        .header h1{
+            font-size: 2.5vh;
+            padding-top: 2vh;
+            margin-left: 7vh;
+            padding-bottom: 2vh;
+        }
+        .content a button img{
+            width: 15vh;
+            height: 15vh;
+            padding: 2vh;
+        }
+        .content a button{
+            margin-right: 4vh;
+            border-radius: 2vh;
+            border: solid;
+            border-color: black;
+            background-color: #eeeeee00;
+            cursor: pointer;
+            margin-bottom: 2vh;
+            border-width: 4px;
+        }
+        .content a button h2{
+            font-size: 2vh;
+        }
+        .navbar-center h3{
+            font-size: 2.5vh;
+        }
+        }
+        @media(min-width:1365px) and (max-width:1367px){
+            .content a button{
+                margin-bottom: 2vh;
+                border-width: 4px;
+            }
+            .header h1{
+            font-size: 4vh;
+            padding-top: 2vh;
+            padding-bottom: 2vh;
+        }
+        }
+        @media(max-width:600px){
+            .navbar{
+                display: block;
+                padding: 0;
+                margin: 0;
+                padding-top: 2vh;
+            }
+            .navbar-right{
+            display: flex;
+            justify-content: center;
+            padding: 0;
+            margin: 0;
+        }
+        .navbar-center{
+            display: flex;
+            justify-content: center;
+            margin: 0;
+            padding: 0;
+            grid-column-gap: 3vh;
+        }
+        .navbar-center h3{
+            color: #eee;
+            font-size: 2vh;
+            margin: 0;
+            padding: 0;
+        }
+        .header h1{
+            font-size: 2.5vh;
+            margin: 0;
+            padding: 0;
+        }
+        .header{
+            padding: 0;
+            margin: 0;
+            text-align: center;
+            padding-bottom: 1vh;
+            padding-top: 1vh;
+        }
+        .content a button img{
+            width: 17vh;
+            height: 17vh;
+            padding: 2vh;
+        }
+        .content a button{
+            border-radius: 2vh;
+            border: solid;
+            border-color: black;
+            background-color: #eeeeee00;
+            cursor: pointer;
+            margin: 0;
+            padding: 0;
+            margin-bottom: 2vh;
+            border-width: 4px;
+        }
+        .content {
+            display: grid;
+            grid-template-columns: auto auto;
+            padding: 0;
+            margin: 0;
+        }
+        .content a{
+            text-align: center;
+        }
+        .content a button h2{
+            font-size: 2.2vh;
+            color: black;
+        }
+        }
+    </style>
+</head>
+<body dir="rtl">
+    <div class="navbar">
+        <div class="navbar-right">
+            <h1>أكاديمية التخدير</h1>
+            <img src="img/logo.png" alt="">
+        </div>
+        <div class="navbar-center">
+            <a href="index.html"><h3>الصفحة الرئيسية</h3></a>
+            <a href="#"><h3>المحاضرات</h3></a>
+            <a href="#"><h3>المحاضرات المسجلة</h3></a>
+        </div>
+        <div class="navbar-left">
+        </div>
+    </div>
+    <div class="header">
+        <h1>المحاضرات</h1>
+    </div>
+    <div class="content">
+        <a href="#"><button>
+            <img src="img/plastic-surgery.png" alt="">
+            <h2>اُسس الجراحة</h2>
+        </button></a>
+        <a href="#"><button>
+            <img src="img/vaccine.png" alt="">
+            <h2>التخدير</h2>
+        </button></a>
+        <a href="#"><button>
+            <img src="img/emergency-room.png" alt="">
+            <h2>العناية المركزة</h2>
+        </button></a>
+        <a href="#"><button>
+            <img src="img/healthcare.png" alt="">
+            <h2>تقنيات أجهزة التخدير</h2>
+        </button></a>
+        <a href="#"><button>
+            <img src="img/medical.png" alt="">
+            <h2>الطب الباطني</h2>
+        </button></a>
+        <a href="#"><button>
+            <img src="img/data-science.png" alt="">
+            <h2>تطبيقات الحاسبة</h2>
+        </button></a>
+    </div>
+</body>
+</html>

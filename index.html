@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>أكاديمية التخدير</title>
+    <link rel="website icon"
+    type="png" href="img/logo.png">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cairo&display=swap');
+        *{
+            padding: 0;
+            margin: 0;
+            font-family: "Cairo", sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+        html{
+            height: 100%;
+        }
+        body{
+            background-image: linear-gradient( to right,  rgba(45,116,213,1) 11.2%, rgba(121,137,212,1) 91.2% );
+        }
+        #content{
+            padding: 4vh;
+        }
+        #navbar{
+            display: flex;
+            justify-content: space-between;
+            padding: 0;
+            margin: 0;
+            padding-top: 3vh;
+        }
+        #navbar-right img{
+            width: 7vh;
+            height: 7vh;
+            padding-right: 2vh;
+            padding-top: 1vh;
+        }
+        #navbar-right h1{
+            color: #eee;
+            font-size: 4vh;
+        }
+        #navbar-right{
+            display: flex;
+            padding-right: 2vh;
+        }
+        #navbar-center{
+            display: inline-flex;
+            padding-top: 2.5vh;
+            margin-left: 30vh;
+            grid-column-gap: 5vh;
+        }
+        #navbar-center a{
+            color: #eeeeeedb;
+        }
+        a{
+            text-decoration: none;
+        }
+        #center{
+            direction: ltr;
+            padding-top: 35vh;
+            padding-left: 5vh;
+            padding-right: 5vh;
+        }
+        #center span{
+            color: #D6DEE7;
+        }
+        #center h3{
+            color: #D6DEE7;
+            font-size: 2vw;
+        }
+        .main{
+            display: flex;
+            justify-content: space-between;
+        }
+        .background img{
+            width: 29vw;
+            height: auto;
+            padding-right: 5vh;
+            padding-top: 20vh;
+        }
+        button{
+            background-color: #3b83f6af;
+            width: 35%;
+            height: 7vh;
+            border-radius: 20vh;
+            border: solid;
+            border-color: black;
+            transition: 0.5ms;
+            border-width: 3px;
+        }
+        button a{
+            color: #D6DEE7;
+            display: block;
+        }
+        #navbar-center a :hover{
+            color: white;
+        }
+        button a :hover{
+            color: white;
+        }
+        .copy{
+            display: flex;
+            gap: 2vh;
+            padding-left: 2vh;
+            direction: ltr;
+            bottom: 0;
+            left: 0;
+            padding-bottom: 10px;
+            position: fixed;
+        }
+        .copy img{
+            width: 3vh;
+            height: 3vh;
+            padding: 0;
+            margin: 0;
+        }
+        .copy p{
+            font-size: 1.5vh;
+        }
+        @media only screen and (max-width: 500px) and (orientation: portrait) {
+            #navbar{
+                display: block;
+                padding: 0;
+                margin: 0;
+                padding-top: 2vh;
+        }
+        #navbar-left{
+            display: none;
+        }
+        .background img{
+            display: block;
+            margin: auto;
+            width: 80%;
+            height: 80%;
+            margin-top: 1vh;
+            padding: 0;
+        }
+        .main{
+            display: block;
+        }
+        #center{
+            padding-top: 1vh;
+            padding: 0;
+            margin: 0;
+            padding-left: 10px;
+        }
+        #navbar-right{
+            direction: rtl;
+            display: flex;
+            justify-content: center;
+            margin: 0;
+            padding: 0;
+        }
+        #navbar-center{
+            display: grid;
+            grid-template-columns: auto auto auto;
+            justify-content: center;
+            margin: 0;
+            padding: 0;
+            grid-column-gap: 3vh;
+
+        }
+        #navbar-center h3{
+            font-size: 4vw;
+            padding-bottom: 5px;
+        }
+        #content{
+            padding: 0;
+            margin: 0;
+        }
+        #navbar-center a{
+            margin: 0;
+        }
+        #navbar{
+            display: block;
+        }
+        #center{
+            margin-top: 2vh;
+        }
+        #center h1{
+            font-size: 4.5vw;
+        }
+        #center h3{
+            font-size: 6vw;
+        }
+        .copy p{
+            font-size: 1.5vh;
+        }
+        .copy img{
+            padding: 0;
+        }
+    }
+    @media(min-width:501px) and (max-width:1020px) and (orientation: portrait){
+        #navbar{
+                display: block;
+            }
+            #navbar-right{
+            display: flex;
+            justify-content: center;
+            padding: 0;
+            margin: 0;
+        }
+        #navbar-center{
+            display: flex;
+            grid-column-gap: 2vh;
+            margin: 0;
+            padding: 0;
+            justify-content: center;
+        }
+        #navbar-center h3{
+            color: #eee;
+            font-size: 2vh;
+            padding-top: 1vh;
+        }
+        .main{
+            display: block;
+        }
+        #content{
+            padding: 0;
+            margin: 0;
+        }
+        #navbar{
+            display: block;
+        }
+        #navbar-right{
+            direction: rtl;
+            display: flex;
+            justify-content: center;
+            padding: 0;
+            margin: 0;
+        }
+        #center{
+            margin: 0;
+            padding: 0;
+            padding-left: 2vh;
+            margin-top: 2vh;
+        }
+        #navbar-center h3{
+            padding: 0;
+            font-size: 2vh;
+            padding-top: 1vh;
+        }
+        #center h1{
+            font-size: 4vw;
+        }
+        #center h3{
+            font-size: 4.5vw;
+        }
+        .background img{
+            display: block;
+            margin: auto;
+            width: 55%;
+            height: auto;
+            margin-top: 10%;
+            padding: 0;
+        }
+        .copy img{
+            padding: 0;
+        }
+    }
+    @media(min-width:1023px) and (max-width:1026px) and (orientation: portrait){
+        #navbar-right h1{
+            margin-top: 20px;
+            font-size: 35px;
+            color: #eee;
+            padding-top: 0;
+        }
+        #navbar{
+            display: flex;
+            padding: 0;
+            margin: 0;
+            padding-top: 3vh;
+        }
+        #navbar-center{
+            display: inline-flex;
+            padding-top: 3vh;
+            grid-column-gap: 30px;
+            margin: 0;
+        }
+        #navbar-center h3{
+            font-size: 20px;
+        }
+        #navbar-right img{
+            width: 70px;
+            height: 70px;
+            padding-right: 1vh;
+            padding-top: 1.5vh;
+        }
+        .main{
+            display: block;
+        }
+        .background img{
+            width: 55%;
+            height: auto;
+            padding: 0;
+            margin-top: 10vh;
+        }
+        .background{
+            display: flex;
+            justify-content: center;
+        }
+        #center{
+            direction: ltr;
+            padding: 0;
+            margin: 0;
+            padding-left: 20px;
+            margin-top: 2vh;
+        }
+        .copy{
+            display: flex;
+            gap: 2vh;
+            direction: ltr;
+            padding-left: 2vh;
+            
+        }
+        .copy img{
+            width: 3vh;
+            height: 3vh;
+            padding: 0;
+        }
+        #center h1{
+            font-size: 4vw;
+        }
+        #center h3{
+            font-size: 5vw;
+        }
+    }
+    @media(min-width:310px) and (max-width:400px){
+        #center{
+            margin: 0;
+            padding-left: 2vh;
+        }
+        .background img{
+            display: block;
+            margin: auto;
+            width: 70%;
+            padding-bottom: 5%;
+        }
+    }
+    @media(min-width:310px) and (max-width:320px){
+        #center{
+            margin: 0;
+            padding-left: 2vh;
+        }
+        .background img{
+            display: block;
+            margin: auto;
+            width: 60%;
+        }
+    }
+    @media(min-width:1100px) and (max-width:1200px){
+        .background img{
+            width: 100%;
+            height: auto;
+            padding-top: 23vh;
+        }
+        .background{
+            width: 40%;
+        }
+    }
+        @media(min-width:1300px) and (max-width:1367px){
+        .background img{
+            width: 100%;
+            height: auto;
+            padding-top: 23vh;
+        }
+        .background{
+            width: 40%;
+        }
+    }
+    @media(min-width:1400px){
+            button{
+                width: 20%;
+                height: 8vh;
+        }
+    }
+    @media only screen and (max-width: 932px) and (orientation: landscape) {
+        #center{
+            padding-top: 24vh;
+        }
+        .background img{
+            padding-top: 13vh;
+        }
+        #center h1{
+            font-size: 2vw;
+        }
+        #center button{
+            width: 11vw;
+            height: 11vh;
+        }
+        .copy img {
+            width: 2vw;
+            height: auto;
+        }
+        .copy p {
+    font-size: 1.2vw;
+}
+     }
+     @media only screen and (min-width:1023px) and (max-width: 1024px) and (orientation: landscape) {
+        #navbar-right h1 {
+            font-size: 4vh;
+}
+.navbar-right img {
+    width: 7vh;
+    height: 7vh;
+    padding-right: 2vh;
+    padding-top: 1vh;
+}
+#navbar-center {
+    margin-left: 10vh;
+}
+.background img {
+    padding-top: 27vh;
+    width: 32vw;
+    padding-right: 3vh;
+}
+#center {
+    padding-right: 0;
+}
+#center h1{
+    font-size: 3.5vh;
+}
+#center h3{
+    font-size: 4vh;
+}
+button{
+    height: 9vh;
+}
+     }
+    </style>
+</head>
+<body dir="rtl">
+        <div id="navbar">
+            <div id="navbar-right">
+                <a href="#"><h1>أكاديمية التخدير</h1></a>
+                <img src="img/logo.png" alt="">
+            </div>
+            <div id="navbar-center">
+                <a href="index.html"><h3>الصفحة الرئيسية</h3></a>
+                <a href="page1/page1.html"><h3>المحاضرات</h3></a>
+                <a href="page2.html"><h3>المحاضرات المسجلة</h3></a>
+                <a href="المراجع الطبية/1.html"><h3>المراجع الطبية</h3></a>
+            </div>
+            <div id="navbar-left"></div>
+        </div>
+        <div class="main">
+            <div class="background">
+                <img src="img/background.png" alt="">
+            </div>
+            <div id="center">
+                <h3>أكاديمية التخدير</h3>
+                <h1><span>منصة تعليمية</span> توفر جميع المحاضرات والتسجيلات وكل مايخص التخدير</h1>
+                <button><a href="page1/page1.html"><h1>ابدأ الان</h1></a></button>
+            </div>
+        </div>
+        <div class="copy">
+            <p dir="ltr">محمد إحسان &copy جميع الحقوق محفوظة 2024-2025</p>
+            <a href="https://t.me/m08069"><img src="img/telegram.png" alt=""></a>
+        </div>
+</body>
+</html>

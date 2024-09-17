@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>المحاضرات</title>
+    <title>أكاديمية التخدير</title>
     <link rel="website icon"
     type="png" href="img/logo.png">
     <style>
@@ -76,7 +76,12 @@
             background-color: #eeeeee00;
             cursor: pointer;
             border-width: 4px;
-            margin-bottom: 4vh;
+            margin-top: 6vh;
+        }
+        .content{
+            margin: 0;
+            padding: 0;
+            justify-content: space-around;
         }
         @media(min-width:1137px) and (max-width:1180px){
             .content a button{
@@ -89,6 +94,7 @@
             margin: auto;
             margin-bottom: 2vh;
             border-width: 4px;
+            margin-top: 6vh;
         }
         .content {
             display: grid;
@@ -139,7 +145,6 @@
             background-color: #eeeeee00;
             cursor: pointer;
             margin: auto;
-            margin-bottom: 2vh;
             border-width: 4px;
         }
         .content {
@@ -152,12 +157,13 @@
             text-align: center;
             padding: 0;
             margin: 0;
+            margin-top: 6vh;
         }
         .content a button h2{
             font-size: 2vh;
         }
         }
-        @media(min-width:1023px) and (max-width:1024px) and (orientation: portrait){
+        @media(min-width:1023px) and (max-width:1024px){
             .navbar{
                 display: block;
             }
@@ -199,9 +205,10 @@
             cursor: pointer;
             margin-bottom: 2vh;
             border-width: 4px;
+            margin-top: 6vh;
         }
         .content a button h2{
-            font-size: 2.5vw;
+            font-size: 2vh;
         }
         .navbar-center h3{
             font-size: 2.5vh;
@@ -211,14 +218,12 @@
             .content a button{
                 margin-bottom: 2vh;
                 border-width: 4px;
+                margin-top: 6vh;
             }
             .header h1{
             font-size: 4vh;
             padding-top: 2vh;
             padding-bottom: 2vh;
-        }
-        h2{
-            font-size: 2vw
         }
         }
         @media(max-width:600px){
@@ -272,7 +277,6 @@
             cursor: pointer;
             margin: 0;
             padding: 0;
-            margin-bottom: 2vh;
             border-width: 4px;
         }
         .content {
@@ -283,6 +287,8 @@
         }
         .content a{
             text-align: center;
+            padding: 0;
+            margin-top: 6vh;
         }
         .content a button h2{
             font-size: 2.2vh;
@@ -295,43 +301,24 @@
     <div class="navbar">
         <div class="navbar-right">
             <h1>أكاديمية التخدير</h1>
-            <img src="img/logo.png" alt="">
+            <img src="../../img/logo.png" alt="">
         </div>
         <div class="navbar-center">
-            <a href="index.html"><h3>الصفحة الرئيسية</h3></a>
-            <a href="page1/page1.html"><h3>المحاضرات</h3></a>
-            <a href="page2.html"><h3>المحاضرات المسجلة</h3></a>
+            <a href="../../index.html"><h3>الصفحة الرئيسية</h3></a>
+            <a href="../../page1/page1.html"><h3>المحاضرات</h3></a>
+            <a href="../../page2.html"><h3>المحاضرات المسجلة</h3></a>
         </div>
         <div class="navbar-left">
         </div>
     </div>
-    <div class="header">
-        <h1>المحاضرات المسجلة</h1>
-    </div>
     <div class="content">
-        <a href="#"><button>
-            <img src="img/plastic-surgery.png" alt="">
-            <h2>اُسس الجراحة</h2>
+        <a href="page1.html"><button>
+            <img src="../../img/book.png" alt="">
+            <h2>النظري</h2>
         </button></a>
         <a href="#"><button>
-            <img src="img/vaccine.png" alt="">
-            <h2>التخدير</h2>
-        </button></a>
-        <a href="#"><button>
-            <img src="img/emergency-room.png" alt="">
-            <h2>العناية المركزة</h2>
-        </button></a>
-        <a href="#"><button>
-            <img src="img/healthcare.png" alt="">
-            <h2>تقنيات أجهزة التخدير</h2>
-        </button></a>
-        <a href="المحاضرات المسجلة/طب الباطنية/1-1-0.html"><button>
-            <img src="img/medical.png" alt="">
-            <h2>الطب الباطني</h2>
-        </button></a>
-        <a href="#"><button>
-            <img src="img/data-science.png" alt="">
-            <h2>تطبيقات الحاسبة</h2>
+            <img src="../../img/laboratory.png" alt="">
+            <h2>العملي</h2>
         </button></a>
     </div>
 </body>

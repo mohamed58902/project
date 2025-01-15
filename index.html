@@ -4,8 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>أكاديمية التخدير</title>
-    <link rel="website icon"
-    type="png" href="img/logo.png">
+    <link rel="website icon" type="png" href="img/logo.png">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Cairo&display=swap');
         *{
@@ -429,6 +428,14 @@ button{
 }
      }
     </style>
+    <script>
+        // التحقق من تسجيل الدخول
+        document.addEventListener('DOMContentLoaded', () => {
+            if (!localStorage.getItem('loggedUser')) {
+                window.location.href = 'login.html';
+            }
+        });
+    </script>
 </head>
 <body dir="rtl">
         <div id="navbar">
@@ -459,42 +466,4 @@ button{
             <a href="https://t.me/m08069"><img src="img/telegram.png" alt=""></a>
         </div>
 </body>
-<script>
-    // التحقق من الجلسة عند تحميل الصفحة
-    window.onload = function() {
-        var savedName = localStorage.getItem('student-name'); // الاسم المسجل
-        var sessionId = localStorage.getItem('session-id'); // معرف الجلسة
-        var activeSessions = JSON.parse(localStorage.getItem('active-sessions')) || {}; // الجلسات النشطة
-        
-        // إذا لم يتم العثور على الاسم أو الجلسة، أو الجلسة غير صالحة، أعد التوجيه إلى صفحة تسجيل الدخول
-        if (!savedName || !sessionId || activeSessions[savedName] !== sessionId) {
-            localStorage.removeItem('student-name'); // تنظيف البيانات غير الصالحة
-            localStorage.removeItem('session-id');  // تنظيف الجلسة غير الصالحة
-            window.location.href = "index.html"; // إعادة التوجيه إلى صفحة تسجيل الدخول
-        } else {
-            // عرض رسالة الترحيب إذا كانت الجلسة صالحة
-            document.getElementById('welcome-message').textContent = "مرحبًا بك، " + savedName + "!";
-        }
-    };
-
-    // دالة تسجيل الخروج
-    function logout() {
-        var savedName = localStorage.getItem('student-name');
-        var sessionId = localStorage.getItem('session-id');
-        var activeSessions = JSON.parse(localStorage.getItem('active-sessions')) || {};
-
-        // مسح الجلسة من قائمة الجلسات النشطة
-        if (activeSessions[savedName] === sessionId) {
-            delete activeSessions[savedName];
-            localStorage.setItem('active-sessions', JSON.stringify(activeSessions));
-        }
-
-        // مسح بيانات الجلسة
-        localStorage.removeItem('student-name');
-        localStorage.removeItem('session-id');
-        
-        // إعادة التوجيه إلى صفحة تسجيل الدخول
-        window.location.href = "index.html";
-    }
-</script>
 </html>

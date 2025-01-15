@@ -86,15 +86,13 @@ button:hover {
     <div class="login-container">
         <div class="login-box">
             <h1>تسجيل الدخول</h1>
-            <p>أدخل اسمك الثلاثي</p>
-            <input type="text" id="student-name" placeholder="الاسم الثلاثي" required>
-            <label>
-                <input type="checkbox" id="remember-me"> تذكرني
-            </label>
+            <p>أدخل اسمك الثلاثي أو الرباعي</p>
+            <input type="text" id="student-name" placeholder="الاسم الثلاثي أو الرباعي" required>
             <button onclick="checkName()">تسجيل الدخول</button>
             <p id="error-message"></p>
         </div>
     </div>
+
     <script>
         // توليد معرف جلسة فريد (Session ID)
 function generateSessionId() {
@@ -113,21 +111,20 @@ window.onload = function () {
 
     // إذا كان هناك اسم محفوظ وجلسة، قم بتوجيه المستخدم إلى الصفحة الموجهة
     if (savedName && sessionId) {
-        window.location.href = "index.html";
+        window.location.href = "welcome.html";
     }
 };
 
 function checkName() {
     var studentName = document.getElementById('student-name').value.trim();
     var errorMessage = document.getElementById('error-message');
-    var rememberMe = document.getElementById('remember-me').checked;
 
     // قائمة الأسماء المسموح بها
     var validNames = [
         "محمد احسان محمود",
-        "سعد خضر نمر",
-        "محمد صبحي عبد الرحمن",
-        "يوسف محمد أحمد علي"
+        "سارة خالد حسين",
+        "أحمد محمود إبراهيم",
+        "يوسف محمد أحمد علي" // اسم رباعي
     ];
 
     // تقسيم الاسم إلى كلمات
@@ -157,13 +154,11 @@ function checkName() {
         activeSessions[studentName] = sessionId;
         localStorage.setItem('active-sessions', JSON.stringify(activeSessions));
 
-        // حفظ الاسم إذا تم تحديد "تذكرني"
-        if (rememberMe) {
-            localStorage.setItem('student-name', studentName);
-        }
+        // حفظ الاسم تلقائيًا في LocalStorage
+        localStorage.setItem('student-name', studentName);
 
         // توجيه المستخدم إلى الصفحة التالية
-        window.location.href = "index.html";
+        window.location.href = "welcome.html";
     } else {
         errorMessage.textContent = "الاسم غير صحيح. الرجاء المحاولة مرة أخرى.";
     }

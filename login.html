@@ -5,11 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>تسجيل الدخول</title>
     <style>
+                @import url('https://fonts.googleapis.com/css2?family=Cairo&display=swap');
         body {
             font-family: Arial, sans-serif;
             background-image: linear-gradient( to right,  rgba(45,116,213,1) 11.2%, rgba(121,137,212,1) 91.2% );
             margin: 0;
             padding: 0;
+            font-family: "Cairo", sans-serif;
         }
         .container {
             display: flex;
@@ -23,7 +25,8 @@
             padding: 40px;
             border-radius: 8px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            width: 300px;
+            width: 30dvh;
+            
         }
         h2 {
             margin-bottom: 20px;
@@ -36,16 +39,19 @@
             border: 1px solid #ddd;
             border-radius: 5px;
             font-size: 16px;
+            font-family: "Cairo", sans-serif;
         }
         .btn {
             width: 100%;
             padding: 10px;
-            background-color: #ff5c8d;
+            background-color: #3F51B5;
             color: white;
             border: none;
             border-radius: 5px;
             font-size: 16px;
             cursor: pointer;
+            margin-left: 10px;
+            font-family: "Cairo", sans-serif;
         }
         .btn:hover {
             background-color: #ff3e6f;
@@ -64,7 +70,7 @@
 
     <script>
         // قائمة الأسماء المسموح لها بالدخول
-        const allowedNames = ["أحمد علي", "سارة محمد", "يوسف أحمد"];
+        const allowedNames = ["محمد احسان محمود", "سعد خضر نمر", "محمد صبحي عبدالرحمن"];
 
         // التحقق إذا كان هناك تسجيل دخول سابق
         if (localStorage.getItem("studentName")) {

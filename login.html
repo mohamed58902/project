@@ -92,7 +92,6 @@ button:hover {
             <p id="error-message"></p>
         </div>
     </div>
-
     <script>
         // توليد معرف جلسة فريد (Session ID)
 function generateSessionId() {
@@ -102,14 +101,9 @@ function generateSessionId() {
 // عند تحميل الصفحة، تحقق من وجود تسجيل دخول محفوظ
 window.onload = function () {
     var savedName = localStorage.getItem('student-name');
-    var sessionId = sessionStorage.getItem('session-id');
+    var sessionId = localStorage.getItem('session-id');
     
-    // إذا كان الاسم محفوظًا ولكن الجلسة غير موجودة، قم بتسجيل الخروج
-    if (savedName && !sessionId) {
-        localStorage.removeItem('student-name');
-    }
-
-    // إذا كان هناك اسم محفوظ وجلسة، قم بتوجيه المستخدم إلى الصفحة الموجهة
+    // إذا كان هناك اسم محفوظ وجلسة، قم بتوجيه المستخدم إلى صفحة الترحيب
     if (savedName && sessionId) {
         window.location.href = "welcome.html";
     }
@@ -121,12 +115,10 @@ function checkName() {
 
     // قائمة الأسماء المسموح بها
     var validNames = [
-        "محمد احسان محمود",
+        "محمد أحمد علي",
         "سارة خالد حسين",
         "أحمد محمود إبراهيم",
-        "سعد خضر نمر",
-        "علي منذر جاسم",
-        "اية منذر جاسم",
+        "علي جاسم محمد",
         "يوسف محمد أحمد علي" // اسم رباعي
     ];
 
@@ -151,7 +143,7 @@ function checkName() {
 
         // إذا كان الاسم صالحًا وغير مستخدم، قم بتسجيل الدخول
         var sessionId = generateSessionId(); // توليد Session ID جديد
-        sessionStorage.setItem('session-id', sessionId); // حفظ الجلسة في الجهاز الحالي
+        localStorage.setItem('session-id', sessionId); // حفظ الجلسة في LocalStorage
         
         // تحديث قائمة الجلسات النشطة
         activeSessions[studentName] = sessionId;
@@ -161,7 +153,7 @@ function checkName() {
         localStorage.setItem('student-name', studentName);
 
         // توجيه المستخدم إلى الصفحة التالية
-        window.location.href = "https://mohamed58902.github.io/project/";
+        window.location.href = "welcome.html";
     } else {
         errorMessage.textContent = "الاسم غير صحيح. الرجاء المحاولة مرة أخرى.";
     }

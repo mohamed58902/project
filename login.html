@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تسجيل الدخول</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-image: linear-gradient( to right,  rgba(45,116,213,1) 11.2%, rgba(121,137,212,1) 91.2% );
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            text-align: center;
+        }
+        .login-box {
+            background-color: white;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 300px;
+        }
+        h2 {
+            margin-bottom: 20px;
+            color: #333;
+        }
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        .btn {
+            width: 100%;
+            padding: 10px;
+            background-color: #ff5c8d;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        .btn:hover {
+            background-color: #ff3e6f;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="login-box">
+            <h2>تسجيل الدخول</h2>
+            <input dir="rtl" type="text" id="studentName" placeholder="الرجاء إدخال اسمك الثلاثي" />
+            <button class="btn" onclick="validateLogin()">دخول</button>
+        </div>
+    </div>
+
+    <script>
+        // قائمة الأسماء المسموح لها بالدخول
+        const allowedNames = ["أحمد علي", "سارة محمد", "يوسف أحمد"];
+
+        // التحقق إذا كان هناك تسجيل دخول سابق
+        if (localStorage.getItem("studentName")) {
+            window.location.href = "index.html"; // الانتقال إلى الصفحة الرئيسية إذا تم تسجيل الدخول سابقاً
+        }
+
+        function generateUUID() {
+            return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+                var r = Math.random() * 16 | 0, v = c === 'x' ? r : (r & 0x3 | 0x8);
+                return v.toString(16);
+            });
+        }
+
+        async function validateLogin() {
+            const studentName = document.getElementById("studentName").value.trim();
+
+            if (studentName === "") {
+                alert("الرجاء إدخال اسمك الثلاثي");
+                return;
+            }
+
+            // التحقق إذا كان الاسم موجودًا في localStorage
+            const existingUser = localStorage.getItem(studentName);
+
+            if (existingUser) {
+                const storedUUID = existingUser;
+                const currentUUID = generateUUID(); // إنشاء UUID جديد للجهاز الحالي
+                alert(`الاسم " ${studentName} " محجوز بالفعل على جهاز آخر.`);
+                return;
+            }
+
+            if (allowedNames.includes(studentName)) {
+                const userUUID = generateUUID();
+                localStorage.setItem(studentName, userUUID); // حفظ UUID مع الاسم
+                localStorage.setItem("studentName", studentName); // حفظ اسم الطالب
+                window.location.href = "index.html"; // الانتقال إلى الصفحة الرئيسية
+            } else {
+                alert("الاسم غير مسموح به. يرجى التحقق من الاسم.");
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تسجيل الدخول - أكاديمية التخدير</title>
+    <style>
+        * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f4f7;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    direction: rtl;
+}
+
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+.login-box {
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 300px;
+    text-align: center;
+}
+
+h1 {
+    color: #333;
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+p {
+    color: #555;
+    font-size: 16px;
+    margin-bottom: 15px;
+}
+
+input {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+}
+
+button {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    background-color: #4CAF50;
+    color: white;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+#error-message {
+    color: red;
+    margin-top: 15px;
+    font-size: 14px;
+}
+
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <div class="login-box">
+            <h1>تسجيل الدخول</h1>
+            <p>أدخل اسمك الثلاثي</p>
+            <input type="text" id="student-name" placeholder="الاسم الثلاثي" required>
+            <label>
+                <input type="checkbox" id="remember-me"> تذكرني
+            </label>
+            <button onclick="checkName()">تسجيل الدخول</button>
+            <p id="error-message"></p>
+        </div>
+    </div>
+    <script>
+        // توليد معرف جلسة فريد (Session ID)
+function generateSessionId() {
+    return '_' + Math.random().toString(36).substr(2, 9);
+}
+
+// عند تحميل الصفحة، تحقق من وجود تسجيل دخول محفوظ
+window.onload = function () {
+    var savedName = localStorage.getItem('student-name');
+    var sessionId = sessionStorage.getItem('session-id');
+    
+    // إذا كان الاسم محفوظًا ولكن الجلسة غير موجودة، قم بتسجيل الخروج
+    if (savedName && !sessionId) {
+        localStorage.removeItem('student-name');
+    }
+
+    // إذا كان هناك اسم محفوظ وجلسة، قم بتوجيه المستخدم إلى الصفحة الموجهة
+    if (savedName && sessionId) {
+        window.location.href = "welcome.html";
+    }
+};
+
+function checkName() {
+    var studentName = document.getElementById('student-name').value.trim();
+    var errorMessage = document.getElementById('error-message');
+    var rememberMe = document.getElementById('remember-me').checked;
+
+    // قائمة الأسماء المسموح بها
+    var validNames = [
+        "محمد احسان محمود",
+        "سعد خضر نمر",
+        "محمد صبحي عبد الرحمن",
+        "يوسف محمد أحمد علي"
+    ];
+
+    // تقسيم الاسم إلى كلمات
+    var nameParts = studentName.split(" ");
+
+    // تحقق من أن الاسم ثلاثي أو رباعي
+    if (nameParts.length < 3 || nameParts.length > 4) {
+        errorMessage.textContent = "يرجى إدخال اسم ثلاثي أو رباعي (3-4 كلمات).";
+        return;
+    }
+
+    // تحقق من صحة الاسم
+    if (validNames.includes(studentName)) {
+        var activeSessions = JSON.parse(localStorage.getItem('active-sessions')) || {};
+        
+        // تحقق إذا كان الاسم مستخدمًا في جهاز آخر
+        if (activeSessions[studentName]) {
+            errorMessage.textContent = "هذا الاسم مستخدم حاليًا على جهاز آخر.";
+            return;
+        }
+
+        // إذا كان الاسم صالحًا وغير مستخدم، قم بتسجيل الدخول
+        var sessionId = generateSessionId(); // توليد Session ID جديد
+        sessionStorage.setItem('session-id', sessionId); // حفظ الجلسة في الجهاز الحالي
+        
+        // تحديث قائمة الجلسات النشطة
+        activeSessions[studentName] = sessionId;
+        localStorage.setItem('active-sessions', JSON.stringify(activeSessions));
+
+        // حفظ الاسم إذا تم تحديد "تذكرني"
+        if (rememberMe) {
+            localStorage.setItem('student-name', studentName);
+        }
+
+        // توجيه المستخدم إلى الصفحة التالية
+        window.location.href = "welcome.html";
+    } else {
+        errorMessage.textContent = "الاسم غير صحيح. الرجاء المحاولة مرة أخرى.";
+    }
+}
+
+    </script>
+</body>
+</html>

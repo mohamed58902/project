@@ -459,4 +459,15 @@ button{
             <a href="https://t.me/m08069"><img src="img/telegram.png" alt=""></a>
         </div>
 </body>
+<script>
+    // عند تحميل الصفحة، تحقق إذا كان هناك تسجيل دخول
+window.onload = function() {
+    var savedId = localStorage.getItem('student-id');
+    if (!savedId) {
+        // إذا لم يكن هناك هوية محفوظة، أعد توجيه المستخدم إلى صفحة تسجيل الدخول
+        window.location.href = "login.html"; // الصفحة الرئيسية لتسجيل الدخول
+    }
+};
+
+</script>
 </html>

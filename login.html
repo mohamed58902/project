@@ -105,7 +105,7 @@ window.onload = function () {
     
     // إذا كان هناك اسم محفوظ وجلسة، قم بتوجيه المستخدم إلى صفحة الترحيب
     if (savedName && sessionId) {
-        window.location.href = "welcome.html";
+        window.location.href = "index.html";
     }
 };
 
@@ -153,7 +153,7 @@ function checkName() {
         localStorage.setItem('student-name', studentName);
 
         // توجيه المستخدم إلى الصفحة التالية
-        window.location.href = "welcome.html";
+        window.location.href = "index.html";
     } else {
         errorMessage.textContent = "الاسم غير صحيح. الرجاء المحاولة مرة أخرى.";
     }

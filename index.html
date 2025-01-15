@@ -460,14 +460,41 @@ button{
         </div>
 </body>
 <script>
-    // عند تحميل الصفحة، تحقق إذا كان هناك تسجيل دخول
-window.onload = function() {
-    var savedId = localStorage.getItem('student-id');
-    if (!savedId) {
-        // إذا لم يكن هناك هوية محفوظة، أعد توجيه المستخدم إلى صفحة تسجيل الدخول
-        window.location.href = "login.html"; // الصفحة الرئيسية لتسجيل الدخول
-    }
-};
+    // التحقق من الجلسة عند تحميل الصفحة
+    window.onload = function() {
+        var savedName = localStorage.getItem('student-name'); // الاسم المسجل
+        var sessionId = localStorage.getItem('session-id'); // معرف الجلسة
+        var activeSessions = JSON.parse(localStorage.getItem('active-sessions')) || {}; // الجلسات النشطة
+        
+        // إذا لم يتم العثور على الاسم أو الجلسة، أو الجلسة غير صالحة، أعد التوجيه إلى صفحة تسجيل الدخول
+        if (!savedName || !sessionId || activeSessions[savedName] !== sessionId) {
+            localStorage.removeItem('student-name'); // تنظيف البيانات غير الصالحة
+            localStorage.removeItem('session-id');  // تنظيف الجلسة غير الصالحة
+            window.location.href = "index.html"; // إعادة التوجيه إلى صفحة تسجيل الدخول
+        } else {
+            // عرض رسالة الترحيب إذا كانت الجلسة صالحة
+            document.getElementById('welcome-message').textContent = "مرحبًا بك، " + savedName + "!";
+        }
+    };
 
+    // دالة تسجيل الخروج
+    function logout() {
+        var savedName = localStorage.getItem('student-name');
+        var sessionId = localStorage.getItem('session-id');
+        var activeSessions = JSON.parse(localStorage.getItem('active-sessions')) || {};
+
+        // مسح الجلسة من قائمة الجلسات النشطة
+        if (activeSessions[savedName] === sessionId) {
+            delete activeSessions[savedName];
+            localStorage.setItem('active-sessions', JSON.stringify(activeSessions));
+        }
+
+        // مسح بيانات الجلسة
+        localStorage.removeItem('student-name');
+        localStorage.removeItem('session-id');
+        
+        // إعادة التوجيه إلى صفحة تسجيل الدخول
+        window.location.href = "index.html";
+    }
 </script>
 </html>

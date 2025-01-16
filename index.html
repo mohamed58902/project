@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>أكاديمية التخدير</title>
-    <link rel="website icon" type="png" href="img/logo.png">
+    <link rel="website icon"
+    type="png" href="img/logo.png">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Cairo&display=swap');
         *{
@@ -458,18 +459,4 @@ button{
             <a href="https://t.me/m08069"><img src="img/telegram.png" alt=""></a>
         </div>
 </body>
-<script>
-    // التحقق من اسم الطالب من الـ localStorage
-    const studentName = localStorage.getItem("studentName");
-    if (studentName) {
-        document.getElementById("studentDisplay").textContent = studentName;
-    } else {
-        window.location.href = "login.html"; // العودة لصفحة تسجيل الدخول إذا لم يكن هناك اسم
-    }
-
-    function logout() {
-        localStorage.removeItem("studentName"); // إزالة اسم الطالب عند الخروج
-        window.location.href = "login.html"; // العودة إلى صفحة تسجيل الدخول
-    }
-</script>
 </html>

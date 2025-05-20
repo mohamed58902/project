@@ -1,0 +1,711 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>أنواع امتحانات التخدير | موسوعة التخدير</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #6a1b9a;
+            --secondary-color: #9c27b0;
+            --text-color: #2d3748;
+            --light-color: #f8fafc;
+            --bg-color: #ffffff;
+            --card-bg: #f8fafc;
+            --border-color: #e2e8f0;
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --transition: all 0.3s ease;
+            --correct-color: #4CAF50;
+            --wrong-color: #F44336;
+        }
+
+        [data-theme="dark"] {
+            --primary-color: #9c27b0;
+            --secondary-color: #ba68c8;
+            --text-color: #f7fafc;
+            --bg-color: #1a202c;
+            --card-bg: #2d3748;
+            --border-color: #4a5568;
+            --light-color: #2d3748;
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3), 0 2px 4px -1px rgba(0, 0, 0, 0.2);
+            --correct-color: #81C784;
+            --wrong-color: #E57373;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Tajawal', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            transition: var(--transition);
+            line-height: 1.6;
+        }
+
+        .navbar {
+            background-color: var(--bg-color);
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .navbar-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0.8rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            color: var(--primary-color);
+            font-weight: 700;
+            font-size: 1.7rem;
+            transition: var(--transition);
+        }
+
+        .logo:hover {
+            transform: translateY(-2px);
+        }
+
+        .logo i {
+            margin-left: 0.6rem;
+            font-size: 2rem;
+            color: var(--primary-color);
+        }
+
+        .logo-text {
+            background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            font-weight: 800;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            align-items: center;
+            gap: 2.5rem;
+            margin-right: 2rem;
+        }
+
+        .nav-item a {
+            text-decoration: none;
+            color: var(--text-color);
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: var(--transition);
+            padding: 0.5rem 0;
+        }
+
+        .nav-item a:hover {
+            color: var(--primary-color);
+        }
+
+        .nav-buttons {
+            display: flex;
+            gap: 1.2rem;
+        }
+
+        .btn {
+            padding: 0.6rem 1.5rem;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: var(--transition);
+            border: none;
+            outline: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .btn-primary {
+            background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+            color: white;
+            box-shadow: 0 4px 10px rgba(106, 27, 154, 0.3);
+        }
+
+        .btn-primary:hover {
+            background: linear-gradient(to right, #7b1fa2, #8e24aa);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(106, 27, 154, 0.4);
+        }
+
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            background: none;
+            border: none;
+            color: var(--text-color);
+            font-size: 1.8rem;
+            transition: var(--transition);
+        }
+
+        .hamburger:hover {
+            color: var(--primary-color);
+            transform: scale(1.1);
+        }
+
+        .mobile-menu {
+            display: none;
+            background-color: var(--card-bg);
+            padding: 1.5rem 2rem;
+            box-shadow: var(--shadow);
+            animation: fadeIn 0.3s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .mobile-menu.active {
+            display: block;
+        }
+
+        .mobile-nav-menu {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .mobile-nav-item a {
+            text-decoration: none;
+            color: var(--text-color);
+            font-weight: 600;
+            font-size: 1.2rem;
+            display: block;
+            padding: 0.7rem 0;
+            transition: var(--transition);
+        }
+
+        .mobile-nav-item a:hover {
+            color: var(--primary-color);
+            padding-right: 10px;
+        }
+
+        .mobile-buttons {
+            display: flex;
+            gap: 1.2rem;
+            margin-top: 2rem;
+            flex-direction: row;
+        }
+
+        .main-content {
+            padding: 3rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .exams-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .exams-header h1 {
+            font-size: 2.2rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .exams-header p {
+            font-size: 1.1rem;
+            color: var(--text-color);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .exam-types {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .exam-card {
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            border-top: 4px solid var(--primary-color);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .exam-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .exam-card h2 {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--primary-color);
+            display: flex;
+            align-items: center;
+        }
+
+        .exam-card h2 i {
+            margin-left: 10px;
+        }
+
+        .exam-card p {
+            color: var(--text-color);
+            margin-bottom: 1.5rem;
+        }
+
+        .exam-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 1.5rem;
+        }
+
+        .questions-count {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+        }
+
+        .start-btn {
+            background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 0.5rem 1.5rem;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition);
+            box-shadow: 0 4px 10px rgba(106, 27, 154, 0.3);
+            display: inline-block;
+        }
+
+        .start-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(106, 27, 154, 0.4);
+        }
+
+        .progress-circle {
+            width: 60px;
+            height: 60px;
+            position: relative;
+        }
+
+        .circle-bg {
+            fill: none;
+            stroke: var(--border-color);
+            stroke-width: 6;
+        }
+
+        .circle-progress {
+            fill: none;
+            stroke: var(--primary-color);
+            stroke-width: 6;
+            stroke-linecap: round;
+            transform: rotate(-90deg);
+            transform-origin: 50% 50%;
+            transition: stroke-dashoffset 0.5s ease;
+        }
+
+        .circle-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--primary-color);
+        }
+
+        .theme-switcher {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            z-index: 1000;
+        }
+
+        #themeToggle {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+
+        #themeToggle:hover {
+            transform: scale(1.1);
+        }
+
+        #themeToggle i {
+            font-size: 1.2rem;
+        }
+
+        @media (max-width: 992px) {
+            .nav-menu, .nav-buttons {
+                display: none;
+            }
+
+            .hamburger {
+                display: block;
+            }
+            
+            .logo {
+                font-size: 1.5rem;
+            }
+            
+            .logo i {
+                font-size: 1.8rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .navbar-container {
+                padding: 0.7rem 1.2rem;
+            }
+            
+            .exams-header h1 {
+                font-size: 1.8rem;
+            }
+            
+            .mobile-buttons {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .btn {
+                width: 100%;
+                padding: 0.8rem;
+            }
+            
+            .exam-types {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .logo {
+                font-size: 1.3rem;
+            }
+            
+            .logo i {
+                font-size: 1.5rem;
+            }
+            
+            .mobile-menu {
+                padding: 1.2rem;
+            }
+            
+            .mobile-nav-item a {
+                font-size: 1.1rem;
+            }
+            
+            .exams-header h1 {
+                font-size: 1.5rem;
+            }
+            
+            .exams-header p {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-container">
+            <a href="#" class="logo">
+                <i class="fas fa-book-medical"></i>
+                <span class="logo-text">موسوعة التخدير</span>
+            </a>
+            
+            <ul class="nav-menu">
+                <li class="nav-item"><a href="#">المحاضرات</a></li>
+                <li class="nav-item"><a href="#">الامتحانات</a></li>
+                <li class="nav-item"><a href="#">المكتبة</a></li>
+            </ul>
+            
+            <div class="nav-buttons">
+                <a href="#contact" class="btn btn-primary">
+                    <i class="fas fa-envelope" style="margin-left: 8px;"></i>
+                    تواصل معنا
+                </a>
+            </div>
+            
+            <button class="hamburger">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+        
+        <div class="mobile-menu">
+            <ul class="mobile-nav-menu">
+                <li class="mobile-nav-item"><a href="#">المحاضرات</a></li>
+                <li class="mobile-nav-item"><a href="#">الامتحانات</a></li>
+                <li class="mobile-nav-item"><a href="#">المكتبة</a></li>
+            </ul>
+            
+            <div class="mobile-buttons">
+                <a href="#contact" class="btn btn-primary" style="width: 100%;">
+                    <i class="fas fa-envelope" style="margin-left: 8px;"></i>
+                    تواصل معنا
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <div class="exams-header">
+            <h1>أنواع امتحانات التخدير</h1>
+            <p>اختر نوع الاختبار المناسب لك واختبر معلوماتك في مجال التخدير</p>
+        </div>
+
+        <div class="exam-types">
+            <div class="exam-card" data-exam-type="multiple-choice">
+                <h2><i class="fas fa-list-ol"></i> اختبار الاختيار من متعدد</h2>
+                <p>اختبار يحتوي على أسئلة متعددة الخيارات، اختر الإجابة الصحيحة من بين الخيارات المعروضة.</p>
+                
+                <div class="exam-meta">
+                    <span class="questions-count">4 أسئلة</span>
+                    <div class="progress-circle">
+                        <svg width="60" height="60" viewBox="0 0 36 36">
+                            <path class="circle-bg"
+                                d="M18 2.0845
+                                a 15.9155 15.9155 0 0 1 0 31.831
+                                a 15.9155 15.9155 0 0 1 0 -31.831"
+                            />
+                            <path class="circle-progress"
+                                d="M18 2.0845
+                                a 15.9155 15.9155 0 0 1 0 31.831
+                                a 15.9155 15.9155 0 0 1 0 -31.831"
+                            />
+                        </svg>
+                        <div class="circle-text">0%</div>
+                    </div>
+                </div>
+                
+                <a href="quiz.html" class="start-btn">
+                    ابدأ الاختبار
+                    <i class="fas fa-arrow-left" style="margin-right: 8px;"></i>
+                </a>
+            </div>
+
+            <div class="exam-card" data-exam-type="true-false">
+                <h2><i class="fas fa-check-circle"></i> اختبار الصح والخطأ</h2>
+                <p>اختبار يحتوي على عبارات وعليك تحديد ما إذا كانت صحيحة أو خاطئة.</p>
+                
+                <div class="exam-meta">
+                    <span class="questions-count">10 أسئلة</span>
+                    <div class="progress-circle">
+                        <svg width="60" height="60" viewBox="0 0 36 36">
+                            <path class="circle-bg"
+                                d="M18 2.0845
+                                a 15.9155 15.9155 0 0 1 0 31.831
+                                a 15.9155 15.9155 0 0 1 0 -31.831"
+                            />
+                            <path class="circle-progress"
+                                d="M18 2.0845
+                                a 15.9155 15.9155 0 0 1 0 31.831
+                                a 15.9155 15.9155 0 0 1 0 -31.831"
+                            />
+                        </svg>
+                        <div class="circle-text">0%</div>
+                    </div>
+                </div>
+                
+                <a href="true-false.html" class="start-btn">
+                    ابدأ الاختبار
+                    <i class="fas fa-arrow-left" style="margin-right: 8px;"></i>
+                </a>
+            </div>
+
+            <div class="exam-card" data-exam-type="matching">
+                <h2><i class="fas fa-link"></i> اختبار التوصيل</h2>
+                <p>اختبار يتطلب منك توصيل العناصر المتشابهة أو المرتبطة ببعضها البعض.</p>
+                
+                <div class="exam-meta">
+                    <span class="questions-count">5 أسئلة</span>
+                    <div class="progress-circle">
+                        <svg width="60" height="60" viewBox="0 0 36 36">
+                            <path class="circle-bg"
+                                d="M18 2.0845
+                                a 15.9155 15.9155 0 0 1 0 31.831
+                                a 15.9155 15.9155 0 0 1 0 -31.831"
+                            />
+                            <path class="circle-progress"
+                                d="M18 2.0845
+                                a 15.9155 15.9155 0 0 1 0 31.831
+                                a 15.9155 15.9155 0 0 1 0 -31.831"
+                            />
+                        </svg>
+                        <div class="circle-text">0%</div>
+                    </div>
+                </div>
+                
+                <a href="matching.html" class="start-btn">
+                    ابدأ الاختبار
+                    <i class="fas fa-arrow-left" style="margin-right: 8px;"></i>
+                </a>
+            </div>
+
+            <div class="exam-card" data-exam-type="fill-blanks">
+                <h2><i class="fas fa-pen-fancy"></i> اختبار الإكمال</h2>
+                <p>اختبار يتطلب منك إكمال العبارات الناقصة بالإجابات الصحيحة.</p>
+                
+                <div class="exam-meta">
+                    <span class="questions-count">8 أسئلة</span>
+                    <div class="progress-circle">
+                        <svg width="60" height="60" viewBox="0 0 36 36">
+                            <path class="circle-bg"
+                                d="M18 2.0845
+                                a 15.9155 15.9155 0 0 1 0 31.831
+                                a 15.9155 15.9155 0 0 1 0 -31.831"
+                            />
+                            <path class="circle-progress"
+                                d="M18 2.0845
+                                a 15.9155 15.9155 0 0 1 0 31.831
+                                a 15.9155 15.9155 0 0 1 0 -31.831"
+                            />
+                        </svg>
+                        <div class="circle-text">0%</div>
+                    </div>
+                </div>
+                
+                <a href="fill-blanks.html" class="start-btn">
+                    ابدأ الاختبار
+                    <i class="fas fa-arrow-left" style="margin-right: 8px;"></i>
+                </a>
+            </div>
+        </div>
+    </main>
+
+    <div class="theme-switcher">
+        <button id="themeToggle" aria-label="تبديل الوضع الداكن">
+            <i class="fas fa-moon"></i>
+            <i class="fas fa-sun" style="display:none;"></i>
+        </button>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // تبديل القائمة المتنقلة
+            const hamburger = document.querySelector('.hamburger');
+            const mobileMenu = document.querySelector('.mobile-menu');
+            
+            hamburger.addEventListener('click', function() {
+                mobileMenu.classList.toggle('active');
+                
+                const icon = hamburger.querySelector('i');
+                if (mobileMenu.classList.contains('active')) {
+                    icon.classList.remove('fa-bars');
+                    icon.classList.add('fa-times');
+                } else {
+                    icon.classList.remove('fa-times');
+                    icon.classList.add('fa-bars');
+                }
+            });
+            
+            // إغلاق القائمة عند النقر على رابط
+            const mobileLinks = document.querySelectorAll('.mobile-nav-item a');
+            mobileLinks.forEach(link => {
+                link.addEventListener('click', function() {
+                    mobileMenu.classList.remove('active');
+                    const icon = hamburger.querySelector('i');
+                    icon.classList.remove('fa-times');
+                    icon.classList.add('fa-bars');
+                });
+            });
+            
+            // تبديل الوضع الداكن/الفاتح
+            const themeToggle = document.getElementById('themeToggle');
+            const moonIcon = themeToggle.querySelector('.fa-moon');
+            const sunIcon = themeToggle.querySelector('.fa-sun');
+            
+            // التحقق من التفضيل المحفوظ أو تفضيل النظام
+            const savedTheme = localStorage.getItem('theme') || 
+                             (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+            
+            // تطبيق الوضع المحدد
+            if (savedTheme === 'dark') {
+                document.documentElement.setAttribute('data-theme', 'dark');
+                moonIcon.style.display = 'none';
+                sunIcon.style.display = 'block';
+            }
+            
+            // حدث النقر على زر التبديل
+            themeToggle.addEventListener('click', function() {
+                const currentTheme = document.documentElement.getAttribute('data-theme');
+                
+                if (currentTheme === 'dark') {
+                    document.documentElement.removeAttribute('data-theme');
+                    localStorage.setItem('theme', 'light');
+                    moonIcon.style.display = 'block';
+                    sunIcon.style.display = 'none';
+                } else {
+                    document.documentElement.setAttribute('data-theme', 'dark');
+                    localStorage.setItem('theme', 'dark');
+                    moonIcon.style.display = 'none';
+                    sunIcon.style.display = 'block';
+                }
+            });
+
+            // تحديث دوائر التقدم بناءً على النتائج المحفوظة
+            const examCards = document.querySelectorAll('.exam-card');
+            
+            examCards.forEach(card => {
+                const examType = card.dataset.examType;
+                const results = JSON.parse(localStorage.getItem(`${examType}-results`)) || { score: 0, total: 1 };
+                const percentage = Math.round((results.score / results.total) * 100);
+                
+                const circleProgress = card.querySelector('.circle-progress');
+                const circleText = card.querySelector('.circle-text');
+                
+                // تحديث الدائرة والنص
+                circleProgress.style.strokeDasharray = `${percentage}, 100`;
+                circleText.textContent = `${percentage}%`;
+                
+                // تغيير لون الدائرة حسب الأداء
+                if (percentage >= 80) {
+                    circleProgress.style.stroke = 'var(--correct-color)';
+                    circleText.style.color = 'var(--correct-color)';
+                } else if (percentage >= 50) {
+                    circleProgress.style.stroke = 'var(--primary-color)';
+                    circleText.style.color = 'var(--primary-color)';
+                } else {
+                    circleProgress.style.stroke = 'var(--wrong-color)';
+                    circleText.style.color = 'var(--wrong-color)';
+                }
+                
+                // تحديث عدد الأسئلة بناءً على النتائج المحفوظة
+                if (results.total > 1) {
+                    card.querySelector('.questions-count').textContent = `${results.total} أسئلة`;
+                }
+            });
+        });
+    </script>
+</body>
+</html>

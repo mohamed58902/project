@@ -270,11 +270,27 @@
         }
 
         .features {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
-        }
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 3rem;
+    align-items: stretch;
+}
+
+.feature-card {
+    display: flex;
+    flex-direction: column;
+}
+
+.feature-content {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.feature-content a {
+    margin-top: auto;
+}
 
         .feature-card {
             background-color: var(--card-bg);
@@ -515,7 +531,7 @@
         <div class="mobile-menu">
             <ul class="mobile-nav-menu">
                 <li class="mobile-nav-item"><a href="#lectures">المحاضرات</a></li>
-                <li class="mobile-nav-item"><a href="exams.html">الامتحانات</a></li>
+                <li class="mobile-nav-item"><a href="#exams">الامتحانات</a></li>
                 <li class="mobile-nav-item"><a href="#library">المكتبة</a></li>
             </ul>
             
@@ -674,7 +690,11 @@
                     
                     const targetElement = document.querySelector(targetId);
                     if (targetElement) {
-                        targetElement.scrollIntoView({
+                        const headerOffset = document.querySelector('.navbar').offsetHeight + 20;
+                        const elementPosition = targetElement.getBoundingClientRect().top;
+                        const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+                        window.scrollTo({
+                            top: offsetPosition,
                             behavior: 'smooth'
                         });
                     }
